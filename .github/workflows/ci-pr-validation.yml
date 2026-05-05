@@ -1,0 +1,16 @@
+name: CI - PR Validation Frontend
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - develop
+      - 'release/**'
+
+jobs:
+  lint-frontend:
+    uses: YeisonLondo/Skorify_DevOps_Prueba/.github/workflows/lint-frontend.yml@main
+
+  sca-trivy:
+    uses: YeisonLondo/Skorify_DevOps_Prueba/.github/workflows/scan-generic.yml@main

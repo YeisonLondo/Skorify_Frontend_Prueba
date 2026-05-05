@@ -1,4 +1,4 @@
-name: Lint Backend
+name: Lint Frontend
 
 on:
   pull_request:
@@ -9,5 +9,5 @@ on:
       - 'release/**'
 
 jobs:
-  lint-backend:
-    uses: YeisonLondo/Skorify_DevOps_Prueba/.github/workflows/lint-backend.yml@main
+  lint-frontend:
+    uses: YeisonLondo/Skorify_DevOps_Prueba/.github/workflows/lint-frontend.yml@main
