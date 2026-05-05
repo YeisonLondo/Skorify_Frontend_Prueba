@@ -16,7 +16,7 @@ export interface JoinGroupCardProps extends Omit<MuiCardProps, 'variant'> {
 }
 
 /**
- * Componente Molecule para mostrar información del grupo
+ * Componente Molecule para mostrar información del grupo holaaaaaa
  * Display de grupo que se va a unir
  */
 export const JoinGroupCard = ({
