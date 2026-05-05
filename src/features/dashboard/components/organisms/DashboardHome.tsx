@@ -19,7 +19,7 @@ import { tokens } from '@lib/theme/theme';
 const CHART_BARS = [40, 35, 60, 75, 50, 95, 65, 45, 30, 55, 40, 80];
 const CHART_LABELS = ['00:00', '06:00', '12:00', '18:00', '23:59'];
 const TIME_FILTERS = ['24H', '7D', '30D'] as const;
-
+const prueba = "hola mundo";
 const METRIC_CARDS = [
   {
     key: 'totalUsers',
