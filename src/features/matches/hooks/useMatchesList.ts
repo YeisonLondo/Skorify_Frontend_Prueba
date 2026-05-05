@@ -10,7 +10,7 @@ type UseMatchesListState = {
   query: MatchesQuery;
   setStatusFilter: (filter: MatchesFilterKey) => void;
   setTeam: (team: string) => void;
-  setWeek: (month: string) => void;
+  setWeek: (week: string) => void;
   setPage: (page: number) => void;
   setPageSize: (pageSize: number) => void;
   resetFilters: () => void;
@@ -35,6 +35,7 @@ export const useMatchesList = (initialPageSize = 10): UseMatchesListState => {
   const params = useMemo(() => {
     const status = statusFromFilter(query.statusFilter);
     const { from, to } = worldCupWeekToFromToIso(Number(query.week));
+
     return {
       page: query.page,
       pageSize: query.pageSize,
@@ -47,33 +48,65 @@ export const useMatchesList = (initialPageSize = 10): UseMatchesListState => {
 
   useEffect(() => {
     let mounted = true;
-    setLoading(true);
+
     matchesService
       .listMatches(params)
       .then((res) => {
         if (!mounted) return;
+
         setItems(res.items);
         setTotal(res.total);
       })
       .finally(() => {
         if (!mounted) return;
+
         setLoading(false);
       });
+
     return () => {
       mounted = false;
     };
   }, [params]);
 
-  const setStatusFilter = (filter: MatchesFilterKey) =>
+  const setStatusFilter = (filter: MatchesFilterKey) => {
+    setLoading(true);
     setQuery((q) => ({ ...q, statusFilter: filter, page: 1 }));
-  const setTeam = (team: string) => setQuery((q) => ({ ...q, team, page: 1 }));
-  const setWeek = (week: string) => setQuery((q) => ({ ...q, week, page: 1 }));
-  const setPage = (page: number) => setQuery((q) => ({ ...q, page: Math.max(1, page) }));
-  const setPageSize = (pageSize: number) =>
-    setQuery((q) => ({ ...q, pageSize: Math.max(1, pageSize), page: 1 }));
+  };
 
-  const resetFilters = () =>
-    setQuery((q) => ({ ...q, statusFilter: 'filterAll', team: '', week: '', page: 1 }));
+  const setTeam = (team: string) => {
+    setLoading(true);
+    setQuery((q) => ({ ...q, team, page: 1 }));
+  };
+
+  const setWeek = (week: string) => {
+    setLoading(true);
+    setQuery((q) => ({ ...q, week, page: 1 }));
+  };
+
+  const setPage = (page: number) => {
+    setLoading(true);
+    setQuery((q) => ({ ...q, page: Math.max(1, page) }));
+  };
+
+  const setPageSize = (pageSize: number) => {
+    setLoading(true);
+    setQuery((q) => ({
+      ...q,
+      pageSize: Math.max(1, pageSize),
+      page: 1,
+    }));
+  };
+
+  const resetFilters = () => {
+    setLoading(true);
+    setQuery((q) => ({
+      ...q,
+      statusFilter: 'filterAll',
+      team: '',
+      week: '',
+      page: 1,
+    }));
+  };
 
   return {
     query,
@@ -88,4 +121,3 @@ export const useMatchesList = (initialPageSize = 10): UseMatchesListState => {
     total,
   };
 };
-
