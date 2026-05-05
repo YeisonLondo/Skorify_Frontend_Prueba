@@ -9,8 +9,6 @@ on:
       - 'release/**'
 
 jobs:
-  lint-frontend:
-    uses: YeisonLondo/Skorify_DevOps_Prueba/.github/workflows/lint-frontend.yml@main
 
-  sca-trivy:
-    uses: YeisonLondo/Skorify_DevOps_Prueba/.github/workflows/scan-generic.yml@main
+  trivy:
+    uses: YeisonLondo/Skorify_DevOps_Prueba/.github/workflows/sca-generic.yml@main
