@@ -1,4 +1,4 @@
-name: CI - PR Validation Frontend
+name: CI - PR Validation Frontend YAAAAA
 
 on:
   pull_request:
