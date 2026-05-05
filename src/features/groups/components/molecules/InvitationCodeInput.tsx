@@ -20,9 +20,17 @@ export const InvitationCodeInput = ({
   const t = useTranslations('groups');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 1. Limpiamos el valor (sin espacios y en mayúsculas)
     const value = e.target.value.replace(/\s+/g, '').toUpperCase();
+    
+    // 2. IMPORTANTE: En lugar de mutar e.target.value directamente (que a veces da problemas),
+    // creamos una copia o simplemente pasamos el evento si el componente es controlado.
     e.target.value = value;
-    onChange?.(e as any);
+    
+    // 3. Llamamos al onChange original sin usar 'any'
+    if (onChange) {
+      onChange(e);
+    }
   };
 
   return (
@@ -31,6 +39,7 @@ export const InvitationCodeInput = ({
         {t('join.codeLabel')}
       </Typography>
       <TextField
+        {...rest} // Es mejor poner el spread al principio para que onChange no se sobrescriba
         fullWidth
         placeholder={t('enterInvitationCode')}
         inputProps={{
@@ -40,7 +49,6 @@ export const InvitationCodeInput = ({
         error={error}
         helperText={helperText}
         onChange={handleChange}
-        {...rest}
       />
     </Box>
   );
