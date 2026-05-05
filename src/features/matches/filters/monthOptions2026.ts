@@ -8,4 +8,3 @@ export const getMonthOptions2026 = (locale: string): MonthOption[] => {
     return { value: month, label };
   });
 };
-

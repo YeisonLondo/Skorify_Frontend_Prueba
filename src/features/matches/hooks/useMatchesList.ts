@@ -4,7 +4,11 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Match } from '../types';
 import type { MatchesFilterKey } from '../components/molecules/MatchesFilters';
 import { matchesService } from '../services/matchesService';
-import { statusFromFilter, worldCupWeekToFromToIso, type MatchesQuery } from '../filters/MatchesQuery';
+import {
+  statusFromFilter,
+  worldCupWeekToFromToIso,
+  type MatchesQuery,
+} from '../filters/MatchesQuery';
 
 type UseMatchesListState = {
   query: MatchesQuery;
@@ -46,32 +50,32 @@ export const useMatchesList = (initialPageSize = 10): UseMatchesListState => {
   }, [query]);
 
   useEffect(() => {
-  let mounted = true;
+    let mounted = true;
 
-  const fetchMatches = async () => {
-    if (!mounted) return;
-
-    setLoading(true);
-
-    try {
-      const res = await matchesService.listMatches(params);
-
+    const fetchMatches = async () => {
       if (!mounted) return;
 
-      setItems(res.items);
-      setTotal(res.total);
-    } finally {
-      if (!mounted) return;
-      setLoading(false);
-    }
-  };
+      setLoading(true);
 
-  fetchMatches();
+      try {
+        const res = await matchesService.listMatches(params);
 
-  return () => {
-    mounted = false;
-  };
-}, [params]);
+        if (!mounted) return;
+
+        setItems(res.items);
+        setTotal(res.total);
+      } finally {
+        if (!mounted) return;
+        setLoading(false);
+      }
+    };
+
+    fetchMatches();
+
+    return () => {
+      mounted = false;
+    };
+  }, [params]);
 
   const setStatusFilter = (filter: MatchesFilterKey) =>
     setQuery((q) => ({ ...q, statusFilter: filter, page: 1 }));
@@ -97,4 +101,3 @@ export const useMatchesList = (initialPageSize = 10): UseMatchesListState => {
     total,
   };
 };
-

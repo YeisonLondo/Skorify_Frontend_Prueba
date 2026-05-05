@@ -25,7 +25,12 @@ const unwrapPaginated = (
   fallbackPageSize: number,
 ): PaginatedResult<Match> => {
   if (Array.isArray(payload)) {
-    return { items: payload, total: payload.length, page: fallbackPage, pageSize: fallbackPageSize };
+    return {
+      items: payload,
+      total: payload.length,
+      page: fallbackPage,
+      pageSize: fallbackPageSize,
+    };
   }
 
   if (payload && 'data' in payload && Array.isArray(payload.data)) {
@@ -62,8 +67,8 @@ export class ApiMatchesGateway implements MatchesGateway {
     const fallbackPage = Math.max(1, params?.page ?? 1);
     const fallbackPageSize = Math.max(1, params?.pageSize ?? 10);
     const res = await api.get<MatchesListResponse>(this.url, params);
-    if (!res.success) return { items: [], total: 0, page: fallbackPage, pageSize: fallbackPageSize };
+    if (!res.success)
+      return { items: [], total: 0, page: fallbackPage, pageSize: fallbackPageSize };
     return unwrapPaginated(res.data, fallbackPage, fallbackPageSize);
   }
 }
-

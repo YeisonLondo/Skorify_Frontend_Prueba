@@ -17,4 +17,3 @@ const getGateway = (): MatchesGateway => {
 export const matchesService = {
   listMatches: (params?: ListMatchesParams) => getGateway().listMatches(params),
 };
-

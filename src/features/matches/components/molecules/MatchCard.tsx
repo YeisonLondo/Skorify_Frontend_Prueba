@@ -100,7 +100,9 @@ const MatchCard = ({
         >
           {tournamentLabel} • {stageLabel}
         </Typography>
-        <Typography sx={{ color: tokens.onSurfaceVariant, fontSize: '0.75rem' }}>{kickoffLabel}</Typography>
+        <Typography sx={{ color: tokens.onSurfaceVariant, fontSize: '0.75rem' }}>
+          {kickoffLabel}
+        </Typography>
       </Box>
 
       <Box
@@ -158,8 +160,14 @@ const MatchCard = ({
           <Box />
         )}
 
-        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', justifyContent: { xs: 'stretch', sm: 'flex-end' } }}>
-
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 1,
+            flexWrap: 'wrap',
+            justifyContent: { xs: 'stretch', sm: 'flex-end' },
+          }}
+        >
           <AppButton
             variant="primary"
             onClick={() => (hasPrediction ? onEditPrediction?.(match) : onAddPrediction?.(match))}
@@ -174,4 +182,3 @@ const MatchCard = ({
 };
 
 export default MatchCard;
-

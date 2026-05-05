@@ -101,4 +101,3 @@ const MatchesToolbar = ({
 );
 
 export default MatchesToolbar;
-
