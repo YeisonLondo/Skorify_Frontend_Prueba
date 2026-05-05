@@ -18,11 +18,7 @@ export default function JoinPage({ params }: PageProps) {
   const code = slug?.[0];
 
   return (
-    <PublicJoinLayout
-      title={t('title')}
-      subtitle={t('subtitle')}
-      footer={t('contactAdmin')}
-    >
+    <PublicJoinLayout title={t('title')} subtitle={t('subtitle')} footer={t('contactAdmin')}>
       <JoinGroupFlow initialCode={code} />
     </PublicJoinLayout>
   );

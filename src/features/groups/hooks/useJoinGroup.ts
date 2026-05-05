@@ -101,9 +101,7 @@ export const useJoinGroup = (): UseJoinGroupReturn => {
         setError({
           code: response.data?.error?.code || 'UNAUTHORIZED',
           message:
-            response.data?.error?.message ||
-            response.error?.message ||
-            t('errors.joinFailed'),
+            response.data?.error?.message || response.error?.message || t('errors.joinFailed'),
         });
 
         return null;

@@ -4,7 +4,11 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Match } from '../types';
 import type { MatchesFilterKey } from '../components/molecules/MatchesFilters';
 import { matchesService } from '../services/matchesService';
-import { statusFromFilter, worldCupWeekToFromToIso, type MatchesQuery } from '../filters/MatchesQuery';
+import {
+  statusFromFilter,
+  worldCupWeekToFromToIso,
+  type MatchesQuery,
+} from '../filters/MatchesQuery';
 
 type UseMatchesListState = {
   query: MatchesQuery;
@@ -88,4 +92,3 @@ export const useMatchesList = (initialPageSize = 10): UseMatchesListState => {
     total,
   };
 };
-

@@ -22,4 +22,3 @@ const TeamBlock = ({ name, code, align = 'left' }: Props) => (
 );
 
 export default TeamBlock;
-
