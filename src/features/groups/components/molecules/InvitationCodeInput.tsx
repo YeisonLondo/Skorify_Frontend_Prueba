@@ -23,7 +23,7 @@ export const InvitationCodeInput = ({
     // 1. Limpiamos el valor (sin espacios y en mayúsculas)
     const value = e.target.value.replace(/\s+/g, '').toUpperCase();
 
-    // 2. IMPORTANTE: En lugar de mutar e.target.value directamente (que a veces da problemas),
+    // 2. IMPORTANTE: En lu de mutar e.target.value directamente (que a veces da problemas),
     // creamos una copia o simplemente pasamos el evento si el componente es controlado.
     e.target.value = value;
 
