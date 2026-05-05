@@ -51,18 +51,27 @@ export const useMatchesList = (initialPageSize = 10): UseMatchesListState => {
 
   useEffect(() => {
     let mounted = true;
-    setLoading(true);
-    matchesService
-      .listMatches(params)
-      .then((res) => {
+
+    const fetchMatches = async () => {
+      if (!mounted) return;
+
+      setLoading(true);
+
+      try {
+        const res = await matchesService.listMatches(params);
+
         if (!mounted) return;
+
         setItems(res.items);
         setTotal(res.total);
-      })
-      .finally(() => {
+      } finally {
         if (!mounted) return;
         setLoading(false);
-      });
+      }
+    };
+
+    fetchMatches();
+
     return () => {
       mounted = false;
     };
