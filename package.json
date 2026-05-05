@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -38,12 +40,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "eslint": "^9.39.4",
     "eslint-config-next": "16.2.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.3",
     "sass": "^1.99.0",
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   }
 }

@@ -1,0 +1,13 @@
+name: Lint Backend
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - develop
+      - main
+      - 'release/**'
+
+jobs:
+  lint-backend:
+    uses: YeisonLondo/Skorify_DevOps_Prueba/.github/workflows/lint-backend.yml@main
